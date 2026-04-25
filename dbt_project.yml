@@ -20,7 +20,7 @@ models:
   homebuilder_sales:
     staging:
       +materialized: view
-      +schema: STAGING
+    intermediate:
+      +materialized: view
     mart:
       +materialized: table
-      +schema: MART
