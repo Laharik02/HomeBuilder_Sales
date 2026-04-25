@@ -39,6 +39,20 @@ final as (
         days_to_close,
         year(contract_date)  as contract_year,
         month(contract_date) as contract_month,
+        case 
+            when month(contract_date) = 1 then 'January'
+            when month(contract_date) = 2 then 'February'
+            when month(contract_date) = 3 then 'March'
+            when month(contract_date) = 4 then 'April'
+            when month(contract_date) = 5 then 'May'
+            when month(contract_date) = 6 then 'June'
+            when month(contract_date) = 7 then 'July'
+            when month(contract_date) = 8 then 'August'
+            when month(contract_date) = 9 then 'September'
+            when month(contract_date) = 10 then 'October'
+            when month(contract_date) = 11 then 'November'
+            when month(contract_date) = 12 then 'December'
+        end as contract_month_name,
 
         -- status flags
         status,
