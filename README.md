@@ -80,6 +80,7 @@ schemas are clean - STAGING, INTERMEDIATE, MART.
 - $162M total revenue
 - 3 regions - South Texas, Rio Grande Valley, Coastal Bend
 - Date range - January 2023 to October 2024
+- Data ingestion - Both source files were loaded into the RAW schema using the Snowflake web UI file upload. 
 
 ---
 
