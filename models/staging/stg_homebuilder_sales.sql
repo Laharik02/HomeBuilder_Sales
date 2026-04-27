@@ -1,3 +1,8 @@
+-- Staging model for raw homebuilder sales data
+-- Responsibilities: type casting, null handling, boolean flags, 
+-- derived fields (price_per_sqft, days_to_close)
+-- Feeds: int_sales via ref()
+
 with source as (
 
     select * from {{ source('raw', 'HOMEBUILDER_SALES') }}
