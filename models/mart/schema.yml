@@ -44,11 +44,11 @@ models:
       - name: contract_date
         description: Date the buyer signed the contract.
       - name: close_date
-        description: Date the home sale was finalized. Null for non-closed contracts.
+        description: Date the home sale was finalized. Null for non closed contracts.
       - name: days_to_close
-        description: Days between contract and close date. Null for non-closed contracts.
+        description: Days between contract and close date. Null for non closed contracts.
       - name: contract_year
-        description: Year extracted from contract date. Used for time-based filtering in dashboard.
+        description: Year extracted from contract date. Used for time based filtering in dashboard.
       - name: contract_month
         description: Month extracted from contract date. Used for time-based filtering in dashboard.
       - name: status
@@ -68,7 +68,7 @@ models:
       - name: sales_consultant
         description: Name of the sales consultant who handled the contract.
       - name: agent_commission
-        description: Dollar amount paid to the realtor agent. Zero for direct walk-in deals.
+        description: Dollar amount paid to the realtor agent. Zero for direct walk in deals.
       - name: incentive_intensity_pct
         description: >
           Incentive amount as a percentage of contract price. Flags margin leakage.
@@ -78,7 +78,7 @@ models:
         description: >
           Agent commission as a percentage of contract price. Measures cost of
           external sales support. A rising trend signals weakening organic brand
-          reach and over-reliance on the realtor community.
+          reach and over reliance on the realtor community.
       - name: cancelled_unit
         description: >
           1 if the contract was cancelled, 0 otherwise. Used with buyer_source
