@@ -1,0 +1,100 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: >
+      Final analysis-ready fact table for homebuilder sales. One row per contract.
+      Joins cleaned sales data with regional manager targets and adds five
+      business metrics: incentive intensity, commission efficiency, buyer source
+      effectiveness, target attainment, and net value added per deal.
+      This is the primary table queried by the Streamlit dashboard.
+    columns:
+      - name: contract_id
+        description: Unique identifier for each sales contract. Primary key.
+      - name: community
+        description: Name of the residential community where the home is located.
+      - name: city
+        description: City where the community is located.
+      - name: region
+        description: Sales territory. One of South Texas, Rio Grande Valley, or Coastal Bend.
+      - name: regional_manager
+        description: Full name of the regional manager responsible for the region.
+      - name: sales_target_units
+        description: Annual unit sales target assigned to the regional manager.
+      - name: margin_target_pct
+        description: Target gross margin percentage for the region as a decimal.
+      - name: plan_name
+        description: Floor plan name representing the home product type.
+      - name: sqft
+        description: Square footage of the home.
+      - name: bedrooms
+        description: Number of bedrooms.
+      - name: bathrooms
+        description: Number of bathrooms including half baths.
+      - name: base_price
+        description: Starting price before upgrades or incentives.
+      - name: upgrade_amount
+        description: Dollar value of buyer selected upgrades.
+      - name: incentive_amount
+        description: Dollar value of incentives offered to close the deal.
+      - name: contract_price
+        description: Final contract price after upgrades and incentives.
+      - name: price_per_sqft
+        description: Contract price divided by square footage. Rounded to 2 decimal places.
+      - name: contract_date
+        description: Date the buyer signed the contract.
+      - name: close_date
+        description: Date the home sale was finalized. Null for non-closed contracts.
+      - name: days_to_close
+        description: Days between contract and close date. Null for non-closed contracts.
+      - name: contract_year
+        description: Year extracted from contract date. Used for time-based filtering in dashboard.
+      - name: contract_month
+        description: Month extracted from contract date. Used for time-based filtering in dashboard.
+      - name: status
+        description: Current contract status. One of Closed, Cancelled, or Under Contract.
+      - name: is_cancelled
+        description: Boolean flag. True if the contract was cancelled.
+      - name: is_closed
+        description: Boolean flag. True if the contract has been closed successfully.
+      - name: is_under_contract
+        description: Boolean flag. True if the contract is still in progress.
+      - name: contract_outcome
+        description: Human readable label. One of Closed, Cancelled, or In Progress.
+      - name: buyer_source
+        description: Channel through which the buyer discovered the property.
+      - name: loan_type
+        description: Financing type used by the buyer.
+      - name: sales_consultant
+        description: Name of the sales consultant who handled the contract.
+      - name: agent_commission
+        description: Dollar amount paid to the realtor agent. Zero for direct walk-in deals.
+      - name: incentive_intensity_pct
+        description: >
+          Incentive amount as a percentage of contract price. Flags margin leakage.
+          High values indicate deals are being discounted heavily to close.
+          Useful for identifying regions or consultants relying on price rather than value.
+      - name: commission_efficiency_pct
+        description: >
+          Agent commission as a percentage of contract price. Measures cost of
+          external sales support. A rising trend signals weakening organic brand
+          reach and over-reliance on the realtor community.
+      - name: cancelled_unit
+        description: >
+          1 if the contract was cancelled, 0 otherwise. Used with buyer_source
+          to calculate cancellation rate by channel in the dashboard.
+      - name: net_closed_unit
+        description: >
+          1 if the contract was closed, 0 otherwise. Aggregated by region or
+          consultant to show honest closed volume excluding cancellations.
+      - name: regional_unit_target
+        description: Annual unit target for the region. Used to calculate target attainment in dashboard.
+      - name: implied_margin_target_dollars
+        description: >
+          Regional margin target percentage applied to contract price.
+          Translates the percentage target into dollar terms per deal.
+      - name: net_value_added
+        description: >
+          Upgrade amount minus incentive amount. Positive means the deal generated
+          net additional value. Negative means more was given away in incentives
+          than was gained in upgrades.

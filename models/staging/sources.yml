@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    database: HOMEBUILDER_DB
+    schema: RAW
+    tables:
+      - name: HOMEBUILDER_SALES
+        description: "Raw homebuilder sales transactions 2023-2024. 600 rows loaded from source CSV."
+      - name: REGIONAL_MANAGER_LOOKUP
+        description: "Regional manager names and sales targets by region. 3 rows."

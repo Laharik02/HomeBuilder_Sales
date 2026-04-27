@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: int_sales
+    description: >
+      Intermediate model that joins cleaned sales transactions with regional
+      manager information. One row per contract. This model handles the join
+      logic only — no metric calculations are performed here. Downstream
+      mart models reference this model to avoid duplicating join logic.
+    columns:
+      - name: contract_id
+        description: Unique identifier for each sales contract. Primary key.
+      - name: community
+        description: Name of the residential community where the home is located.
+      - name: city
+        description: City where the community is located.
+      - name: region
+        description: Sales territory. Join key between sales and manager lookup.
+      - name: regional_manager
+        description: Full name of the regional manager. Joined from stg_regional_manager_lookup.
+      - name: sales_target_units
+        description: Annual unit target for the region. Joined from stg_regional_manager_lookup.
+      - name: margin_target_pct
+        description: Target gross margin percentage for the region as a decimal.
+      - name: plan_name
+        description: Floor plan name representing the home product type.
+      - name: sqft
+        description: Square footage of the home.
+      - name: bedrooms
+        description: Number of bedrooms.
+      - name: bathrooms
+        description: Number of bathrooms including half baths.
+      - name: base_price
+        description: Starting price before upgrades or incentives.
+      - name: upgrade_amount
+        description: Dollar value of buyer selected upgrades.
+      - name: incentive_amount
+        description: Dollar value of incentives offered to close the deal.
+      - name: contract_price
+        description: Final contract price after upgrades and incentives.
+      - name: price_per_sqft
+        description: Contract price divided by square footage.
+      - name: contract_date
+        description: Date the buyer signed the contract.
+      - name: close_date
+        description: Date the home sale was finalized. Null for non-closed contracts.
+      - name: days_to_close
+        description: Days between contract and close date. Null for non-closed contracts.
+      - name: status
+        description: Current contract status. One of Closed, Cancelled, or Under Contract.
+      - name: is_cancelled
+        description: Boolean flag. True if the contract was cancelled.
+      - name: is_closed
+        description: Boolean flag. True if the contract has been closed successfully.
+      - name: is_under_contract
+        description: Boolean flag. True if the contract is still in progress.
+      - name: buyer_source
+        description: Channel through which the buyer discovered the property.
+      - name: loan_type
+        description: Financing type used by the buyer.
+      - name: sales_consultant
+        description: Name of the sales consultant who handled the contract.
+      - name: agent_commission
+        description: Dollar amount paid to the realtor agent. Zero for direct deals.

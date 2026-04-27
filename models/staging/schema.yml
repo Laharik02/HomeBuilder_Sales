@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: stg_homebuilder_sales
+    description: >
+      Cleaned and standardized homebuilder sales transactions sourced from
+      RAW.HOMEBUILDER_SALES. One row per contract. Includes boolean status flags
+      and calculated price per square foot. Null values in close_date and
+      days_to_close are intentional for cancelled and in-progress deals.
+    columns:
+      - name: contract_id
+        description: Unique identifier for each sales contract. Primary key.
+      - name: community
+        description: Name of the residential community where the home is located.
+      - name: city
+        description: City where the community is located.
+      - name: region
+        description: Sales territory. One of South Texas, Rio Grande Valley, or Coastal Bend.
+      - name: plan_name
+        description: Floor plan name. Represents the product SKU for the home.
+      - name: sqft
+        description: Square footage of the home.
+      - name: bedrooms
+        description: Number of bedrooms.
+      - name: bathrooms
+        description: Number of bathrooms including half baths.
+      - name: base_price
+        description: Starting price of the home before upgrades or incentives.
+      - name: upgrade_amount
+        description: Dollar value of buyer selected upgrades added to the base price.
+      - name: incentive_amount
+        description: Dollar value of incentives or discounts offered to close the deal.
+      - name: contract_price
+        description: Final contract price. Calculated as base_price + upgrade_amount - incentive_amount.
+      - name: price_per_sqft
+        description: Contract price divided by square footage. Rounded to 2 decimal places.
+      - name: contract_date
+        description: Date the buyer signed the contract.
+      - name: close_date
+        description: Date the home sale was finalized. Null for cancelled and in-progress contracts.
+      - name: days_to_close
+        description: Number of days between contract date and close date. Null for non-closed contracts.
+      - name: status
+        description: Current contract status. One of Closed, Cancelled, or Under Contract.
+      - name: is_cancelled
+        description: Boolean flag. True if the contract was cancelled.
+      - name: is_closed
+        description: Boolean flag. True if the contract has been closed successfully.
+      - name: is_under_contract
+        description: Boolean flag. True if the contract is still in progress.
+      - name: buyer_source
+        description: Channel through which the buyer discovered the property.
+      - name: loan_type
+        description: Financing type used by the buyer. One of Conventional, FHA, USDA, VA, or Cash.
+      - name: sales_consultant
+        description: Name of the sales consultant who handled the contract.
+      - name: agent_commission
+        description: Dollar amount paid to the realtor agent. Zero for direct walk-in deals with no agent.
+
+  - name: stg_regional_manager_lookup
+    description: >
+      Cleaned reference table containing regional manager names and performance
+      targets by sales territory. Three rows, one per region. Joins to
+      stg_homebuilder_sales on the region column.
+    columns:
+      - name: region
+        description: Sales territory name. Join key to the sales table.
+      - name: regional_manager
+        description: Full name of the manager responsible for the region.
+      - name: sales_target_units
+        description: Annual unit sales target assigned to the regional manager.
+      - name: margin_target_pct
+        description: Target gross margin percentage for the region expressed as a decimal.
