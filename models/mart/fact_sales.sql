@@ -1,3 +1,7 @@
+-- Mart model -  business metric definitions
+-- Selects from int_sales, adds more calculated metrics
+-- Only model queried by the Streamlit dashboard
+
 with joined as (
 
     select * from {{ ref('int_sales') }}
