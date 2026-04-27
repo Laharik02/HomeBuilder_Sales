@@ -1,3 +1,8 @@
+-- Intermediate model - join logic only
+-- Joins stg_homebuilder_sales to stg_regional_manager_lookup on region
+-- No metric calculations in this model
+-- Feeds: fct_sales via ref()
+
 with sales as (
 
     select * from {{ ref('stg_homebuilder_sales') }}
