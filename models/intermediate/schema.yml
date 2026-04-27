@@ -43,9 +43,9 @@ models:
       - name: contract_date
         description: Date the buyer signed the contract.
       - name: close_date
-        description: Date the home sale was finalized. Null for non-closed contracts.
+        description: Date the home sale was finalized. Null for non closed contracts.
       - name: days_to_close
-        description: Days between contract and close date. Null for non-closed contracts.
+        description: Days between contract and close date. Null for non closed contracts.
       - name: status
         description: Current contract status. One of Closed, Cancelled, or Under Contract.
       - name: is_cancelled
