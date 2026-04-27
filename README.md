@@ -30,7 +30,7 @@ logic and metric calculations never live in the same file.
 
 **Step 4 - dbt builds the metrics (MART)** : The final fact_sales table has all business metrics calculated and ready for the dashboard to query. 
 
-**Step 5 — Streamlit serves it** : The dashboard reads from MART in real time, applies whatever filters the user selects, and passes the filtered data to the AI features.
+**Step 5 - Streamlit serves it** : The dashboard reads from MART in real time, applies whatever filters the user selects, and passes the filtered data to the AI features.
 
 ---
 
@@ -51,7 +51,7 @@ tests as everything else.
 closed/cancelled flags, days to close, and price per sqft. 
 
 **macros/generate_schema_name.sql** : Controls which Snowflake schema each dbt model deploys to. Without this, dbt adds environment prefixes to schema names. With it, the 
-schemas are clean — STAGING, INTERMEDIATE, MART.
+schemas are clean - STAGING, INTERMEDIATE, MART.
 
 **dbt_project.yml** : The dbt project config. Defines the project name, model paths, and which schemas each folder deploys to.
 
@@ -61,18 +61,15 @@ schemas are clean — STAGING, INTERMEDIATE, MART.
 
 ## Dashboard Features
 
-- 5 KPI cards at the top - closed units, revenue, cancellation rate, 
-  avg days to close, target attainment
+- 5 KPI cards at the top - closed units, revenue, cancellation rate, avg days to close, target attainment
 - Regional sales vs annual target chart
 - Cancellation rate by community (colour coded red/orange/green)
 - Buyer source breakdown - which channels produce real buyers
 - Sales consultant performance bubble chart
 - Community scorecard table with health filters
-- 6 sidebar filters - region, year, consultant, community, loan type, 
-  date range
+- 6 sidebar filters - region, year, consultant, community, loan type, date range
 - AI sales forecast - Cortex FORECAST predicts next 3 months by region
-- AI executive summary - one button generates 4 strategic bullet points 
-  from your current filtered view
+- AI executive summary - one button generates 4 strategic bullet points from your current filtered view
 - Natural language chat - ask plain English questions about the data
 
 ---
