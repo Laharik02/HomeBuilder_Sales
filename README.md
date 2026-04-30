@@ -1,6 +1,6 @@
-# HomeBuilder Sales Dashboard - Rhodes Enterprises
+# HomeBuilder Sales Dashboard 
 
-I built this as part of the Rhodes Enterprises Data Engineer assessment. The goal was to take raw Homebuilder sales data and Regional Manager data and turn it into a live dashboard with AI features.
+ The goal was to take raw Homebuilder sales data and Regional Manager data and turn it into a live dashboard with AI features.
 
 Live Dashboard: https://homebuildersales-znpajl9hjvqkafx6zlzp2t.streamlit.app
 
